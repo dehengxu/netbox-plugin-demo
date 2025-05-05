@@ -1,8 +1,9 @@
 from rest_framework import serializers
 
-from ipam.api.serializers import NestedPrefixSerializer
+# from ipam.api.serializers import NestedPrefixSerializer
+from ipam.api.serializers import PrefixSerializer
 from netbox.api.serializers import NetBoxModelSerializer, WritableNestedSerializer
-from ..models import AccessList, AccessListRule
+from netbox_access_lists.models import AccessList, AccessListRule
 
 
 #
@@ -52,8 +53,8 @@ class AccessListRuleSerializer(NetBoxModelSerializer):
         view_name='plugins-api:netbox_access_lists-api:accesslistrule-detail'
     )
     access_list = NestedAccessListSerializer()
-    source_prefix = NestedPrefixSerializer()
-    destination_prefix = NestedPrefixSerializer()
+    source_prefix = PrefixSerializer()
+    destination_prefix = PrefixSerializer()
 
     class Meta:
         model = AccessListRule
